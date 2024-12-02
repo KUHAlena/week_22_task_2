@@ -1,35 +1,33 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import WordTable from "../Components/WordTable/WordTable.jsx";
+import "../styles/styles.scss";
+
+const initialWords = [
+  { id: 1, english: "measure", transcription: "[ˈmeʒ.əɹ]", russian: "мера" },
+  { id: 2, english: "fire", transcription: "[faɪə]", russian: "огонь" },
+  { id: 3, english: "island", transcription: "[ˈaɪ.lənd]", russian: "остров" },
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [words, setWords] = useState(initialWords);
+
+  const updateWord = (id, updatedWord) => {
+    setWords(words.map((word) => (word.id === id ? updatedWord : word)));
+  };
+
+  const deleteWord = (id) => {
+    setWords(words.filter((word) => word.id !== id));
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="App">
+      <header>
+        <h1>Word List</h1>
+      </header>
+      <WordTable words={words} updateWord={updateWord} deleteWord={deleteWord} />
+    </div>
+  );
 }
 
-export default App
+export default App;
+
