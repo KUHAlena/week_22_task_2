@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import WordTable from "../Components/WordTable/WordTable.jsx";
 import "../styles/styles.scss";
+import WordCard from '../Components/WordCard/WordCard.jsx';
 
 const initialWords = [
   { id: 1, english: "measure", transcription: "[ˈmeʒ.əɹ]", russian: "мера" },
@@ -25,9 +26,9 @@ function App() {
         <h1>Word List</h1>
       </header>
       <WordTable words={words} updateWord={updateWord} deleteWord={deleteWord} />
+      <WordCard english="stork" transcription="[stɔːk]" russian="аист" />
     </div>
   );
 }
 
 export default App;
-
